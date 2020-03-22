@@ -15,7 +15,7 @@ ScreenShots :
 </span>
 
 Information Source : 
-<br><br>
+
 1. Global Tracker - https://github.com/ExpDev07/coronavirus-tracker-api
 <br>
 2. Precautions - https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public
