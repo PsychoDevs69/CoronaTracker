@@ -17,7 +17,7 @@ ScreenShots :
 Information Source : 
 
 1. Global Tracker - https://github.com/ExpDev07/coronavirus-tracker-api
-<br>
+
 2. Precautions - https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public
-<br>
+
 3. COVID-19 Risk Level - New Jersey Department of Health 
