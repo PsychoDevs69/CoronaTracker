@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/helpfulC">
+
+        <item
+            android:id="@+id/helpfulContent"
+            android:title="Helpful Content">
+            <menu>
+
+                <item
+                    android:id="@+id/searchSD"
+                    android:icon="@drawable/search_icon"
+                    android:title="Search" />
+
+                <item
+                    android:id="@+id/notificationSD"
+                    android:icon="@drawable/notification_icon"
+                    android:title="Important Announcement" />
+
+                <item
+                    android:id="@+id/quizSD"
+                    android:icon="@drawable/corona_icon_svg"
+                    android:title="My COVID-19 Risk Level" />
+
+                <item
+                    android:id="@+id/changeCountrySD"
+                    android:icon="@android:drawable/ic_dialog_map"
+                    android:title="Change Country" />
+
+            </menu>
+        </item>
+    </group>
+
+
+    <group
+        android:id="@+id/more"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/moreOptions"
+            android:title="More">
+            <menu>
+
+                <item
+                    android:id="@+id/shareSD"
+                    android:checkable="false"
+                    android:icon="@drawable/share_icon"
+                    android:title="Share" />
+
+                <item
+                    android:id="@+id/aboutSD"
+                    android:checkable="false"
+                    android:icon="@drawable/info_icon"
+                    android:title="About" />
+
+            </menu>
+        </item>
+    </group>
+</menu>

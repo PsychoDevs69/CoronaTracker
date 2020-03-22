@@ -1,0 +1,157 @@
+<resources>
+    <string name="app_name">Corona Tracker</string>
+    <string name="zeroCases">Your Country has 0 cases! Stay safe.</string>
+    <string name="loadingPlW">Loading, please wait...</string>
+    <string name="deaths">Deaths</string>
+    <string name="recovered">Recovered</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="total_cases">Total Cases</string>
+    <string name="countryHint">Type country name...</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="headerMessage">Please stay safe from this deadly disease and restrict social gatherings as much as possible. Please follow all government guidelines and don\'t panic.\n\nStay safe and healthy!!</string>
+    <string name="updateAvailableText">An important update for this application is available. Would you like to update the app? \n\nClicking YES will redirect you to a website to download the latest app, please install the downloaded application.</string>
+
+
+    <string-array name="countryNames">
+        <item>India</item>
+        <item>China</item>
+        <item>Italy</item>
+        <item>Iran</item>
+        <item>Spain</item>
+        <item>Germany</item>
+        <item>US</item>
+        <item>France</item>
+        <item>Switzerland</item>
+        <item>United Kingdom</item>
+        <item>Netherlands</item>
+        <item>Austria</item>
+        <item>Belgium</item>
+        <item>Norway</item>
+        <item>Sweden</item>
+        <item>Denmark</item>
+        <item>Japan</item>
+        <item>Malaysia</item>
+        <item>Canada</item>
+        <item>Portugal</item>
+        <item>Cruise Ship</item>
+        <item>Czechia</item>
+        <item>Australia</item>
+        <item>Israel</item>
+        <item>Brazil</item>
+        <item>Ireland</item>
+        <item>Qatar</item>
+        <item>Pakistan</item>
+        <item>Greece</item>
+        <item>Finland</item>
+        <item>Poland</item>
+        <item>Singapore</item>
+        <item>Luxembourg</item>
+        <item>Iceland</item>
+        <item>Indonesia</item>
+        <item>Slovenia</item>
+        <item>Bahrain</item>
+        <item>Romania</item>
+        <item>Saudi Arabia</item>
+        <item>Thailand</item>
+        <item>Estonia</item>
+        <item>Egypt</item>
+        <item>Chile</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+        <item>Ecuador</item>
+        <item>Russia</item>
+        <item>Iraq</item>
+        <item>Turkey</item>
+        <item>Lebanon</item>
+        <item>South Africa</item>
+        <item>Kuwait</item>
+        <item>United Arab Emirates</item>
+        <item>Slovakia</item>
+        <item>San Marino</item>
+        <item>Mexico</item>
+        <item>Armenia</item>
+        <item>Panama</item>
+        <item>Taiwan*</item>
+        <item>Croatia</item>
+        <item>Serbia</item>
+        <item>Colombia</item>
+        <item>Argentina</item>
+        <item>Bulgaria</item>
+        <item>Algeria</item>
+        <item>Latvia</item>
+        <item>Vietnam</item>
+        <item>Uruguay</item>
+        <item>Brunei</item>
+        <item>Hungary</item>
+        <item>Jordan</item>
+        <item>Costa Rica</item>
+        <item>Cyprus</item>
+        <item>Albania</item>
+        <item>Morocco</item>
+        <item>Bosnia and Herzegovina</item>
+        <item>Sri Lanka</item>
+        <item>Andorra</item>
+        <item>Malta</item>
+        <item>Belarus</item>
+        <item>Moldova</item>
+        <item>Oman</item>
+        <item>North Macedonia</item>
+        <item>Azerbaijan</item>
+        <item>Kazakhstan</item>
+        <item>Venezuela</item>
+        <item>Georgia</item>
+        <item>Tunisia</item>
+        <item>Cambodia</item>
+        <item>Lithuania</item>
+        <item>Dominican Republic</item>
+        <item>Burkina Faso</item>
+        <item>Senegal</item>
+        <item>New Zealand</item>
+        <item>Liechtenstein</item>
+        <item>Martinique</item>
+        <item>Uzbekistan</item>
+        <item>Afghanistan</item>
+        <item>Bangladesh</item>
+        <item>Ukraine</item>
+        <item>Jamaica</item>
+        <item>Congo (Kinshasa)</item>
+        <item>Cameroon</item>
+        <item>Maldives</item>
+        <item>Bolivia</item>
+        <item>Honduras</item>
+        <item>Paraguay</item>
+        <item>Cuba</item>
+        <item>Ghana</item>
+        <item>Trinidad and Tobago</item>
+        <item>Guatemala</item>
+        <item>Nigeria</item>
+        <item>Rwanda</item>
+        <item>Monaco</item>
+        <item>Guyana</item>
+        <item>Kenya</item>
+        <item>Mongolia</item>
+        <item>Ethiopia</item>
+        <item>Seychelles</item>
+        <item>Equatorial Guinea</item>
+        <item>Tanzania</item>
+        <item>Barbados</item>
+        <item>Namibia</item>
+        <item>Montenegro</item>
+        <item>Kyrgyzstan</item>
+        <item>Mauritius</item>
+        <item>Sudan</item>
+        <item>Mauritania</item>
+        <item>Saint Vincent and the Grenadines</item>
+        <item>Fiji</item>
+        <item>Suriname</item>
+        <item>Korea\, South</item>
+        <item>Cote d\'Ivoire</item>
+        <item>Bahamas\, The</item>
+        <item>Congo \(Brazzaville\)</item>
+    </string-array>
+
+    <string name="default_notification_channel_id">psychoDevs_GeneralNotification</string>
+
+</resources>

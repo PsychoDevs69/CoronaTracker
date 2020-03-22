@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/searchCountry"
+        app:showAsAction="always"
+        android:icon="@drawable/search_icon_white"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/info"
+        app:showAsAction="always"
+        android:icon="@drawable/info_icon"
+        android:title="Info" />
+    <item
+        android:id="@+id/shareApk"
+        app:showAsAction="always"
+        android:icon="@drawable/share_icon"
+        android:title="share"/>
+</menu>

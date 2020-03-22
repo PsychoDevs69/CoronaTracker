@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#BA2334</color>
+    <color name="colorPrimaryDark">#BA2334</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="corona_red">#BA2334</color>
+    <color name="recovered_green">#70A800</color>
+    <color name="cardCornerGrey">#E6E6E6</color>
+</resources>

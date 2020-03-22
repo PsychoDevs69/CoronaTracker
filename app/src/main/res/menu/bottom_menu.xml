@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/globalTracker_bottomNav"
+        android:icon="@drawable/globe_icon"
+        android:title="Global Tracker" />
+
+    <item
+        android:id="@+id/precautions_bottomNav"
+        android:icon="@drawable/precautions_icon"
+        android:title="Precautions" />
+
+</menu>
