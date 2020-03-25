@@ -28,8 +28,9 @@ ScreenShots :
 
 Information Source : 
 
-1. Global Tracker - <del>https://github.com/ExpDev07/coronavirus-tracker-api<del>
-                    https://corona.lmao.ninja/countries
+<del>1. Global Tracker - https://github.com/ExpDev07/coronavirus-tracker-api<del>
+ 
+1. Global Tracker - https://corona.lmao.ninja/countries
 
 2. Precautions - https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public
 
