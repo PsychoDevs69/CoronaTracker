@@ -1,6 +1,7 @@
 # CoronaTracker
 
-App link : https://bit.ly/3abh6np
+App link (v1.5.0): https://bit.ly/3bm65jt
+App link (v1.0.0): https://bit.ly/3abh6np 
 
 A simple Android application which will help you track the latest spread of corona virus and other useful features.
 
