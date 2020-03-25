@@ -9,7 +9,7 @@ Simple and light weight application.
 
 ScreenShots :
 <br><br>
-App Version 1.5.0:
+<b>App Version 1.5.0:</b>
 <br><br>
 <span>
  <img height=400 width=200 src="https://user-images.githubusercontent.com/29357444/77520204-daa38f00-6ea6-11ea-8674-2f409a82a38d.jpeg" />
@@ -17,7 +17,7 @@ App Version 1.5.0:
   <img height=400 width=200 src="https://user-images.githubusercontent.com/29357444/77520278-f7d85d80-6ea6-11ea-876a-a9d6904b306c.jpeg" />
  </span>
  <br><br>
-App Version 1.0.0:
+<b>App Version 1.0.0:</b>
 <br><br>
 <span>
  <img height=400 width=200 src="https://user-images.githubusercontent.com/29357444/77245472-d8da9100-6c44-11ea-97cf-f028448829b3.png" />
