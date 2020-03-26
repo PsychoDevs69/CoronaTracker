@@ -1,6 +1,6 @@
 # CoronaTracker
 
-App link (v1.5.0): https://bit.ly/3dv8qdL <br>
+App link (v1.5.5): https://bit.ly/3dv8qdL <br>
 App link (v1.5.0): https://bit.ly/3bm65jt <br>
 App link (v1.0.0): https://bit.ly/3abh6np 
 
