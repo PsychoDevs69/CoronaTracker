@@ -1,314 +1,583 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:id="@+id/swipeRefreshGlobalList"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.GlobalList">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:animateLayoutChanges="true"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipeRefreshGlobalList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".fragments.GlobalList">
 
-        <com.google.android.material.card.MaterialCardView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:visibility="gone"
-            android:layout_marginEnd="5dp"
-            app:cardCornerRadius="6dp"
-            app:strokeWidth="1dp"
-            android:id="@+id/searchCard"
-            app:strokeColor="@color/cardCornerGrey">
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/countryHint"
-                android:id="@+id/searchEditText"
-                android:background="@android:color/transparent"
-                android:padding="10dp"
-                android:textColor="#000"
-                android:drawableStart="@drawable/search_icon"
-                android:drawablePadding="5dp" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="6dp"
-            android:layout_below="@+id/searchCard"
-            android:layout_margin="5dp"
-            app:strokeColor="#000"
-            app:strokeWidth="1dp"
-            android:id="@+id/totalCasesCard">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/locationNameTextView"
-                    android:text="@string/total_cases"
-                    android:textColor="#000"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="25sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:orientation="vertical"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/confirmedCasesLayout">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/confirmed" />
-
-                    <TextView
-                        android:id="@+id/confirmedCaseTextView_main"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="000"
-                        android:textColor="@color/corona_red"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_below="@id/locationNameTextView"
-                    android:layout_marginStart="10dp"
-                    android:layout_alignBottom="@id/deathCasesLayout"
-                    android:gravity="bottom"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/recovered" />
-
-                    <TextView
-                        android:id="@+id/recoveredTextView_main"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="00"
-                        android:textColor="@color/recovered_green"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:orientation="vertical"
-                    android:layout_below="@id/confirmedCasesLayout"
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignStart="@id/confirmedCasesLayout"
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/deathCasesLayout">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/deaths" />
-
-                    <TextView
-                        android:id="@+id/deathsTextView_main"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="000"
-                        android:textColor="#000"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-            </RelativeLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:id="@+id/ownCountryTollLayout"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/totalCasesCard">
-
+            <!--SEARCH LAYOUT-->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/searchCard"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
+                android:visibility="gone"
                 app:cardCornerRadius="6dp"
-                app:strokeWidth="1dp"
                 app:strokeColor="@color/cardCornerGrey"
-                android:layout_height="wrap_content">
+                app:strokeWidth="1dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/search_icon"
+                    android:drawablePadding="5dp"
+                    android:hint="@string/countryHint"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textColor="#000" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--TOTAL CASES-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/totalCasesCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/searchCard"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="6dp"
+                app:strokeColor="#000"
+                app:strokeWidth="1dp">
 
                 <RelativeLayout
+                    android:animateLayoutChanges="true"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="8dp">
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ownCardLocationNameTextView"
-                        android:text="Country"
-                        android:textColor="#000"
-                        android:layout_toStartOf="@id/ownCardconfirmedCasesLayout"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:textSize="25sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/ownCardconfirmedCasesLayout">
+                    <!--COMPLETE DATA FOR TOTAL CASES LAYOUT-->
+                    <RelativeLayout
+                        android:paddingBottom="10dp"
+                        android:visibility="visible"
+                        android:id="@+id/completeDataCardTotalCases"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/locationNameTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Confirmed"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ownCardConfirmedCaseTextView"
-                            android:text="000"
-                            android:textSize="20sp"
-                            android:textColor="@color/corona_red"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_below="@id/ownCardLocationNameTextView"
-                        android:layout_marginStart="10dp"
-                        android:layout_alignBottom="@id/ownCarddeathCasesLayout"
-                        android:gravity="bottom"
-                        android:layout_marginTop="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Recovered"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ownCardRecoveredTextView"
-                            android:text="00"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:textColor="@color/recovered_green"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:orientation="vertical"
-                        android:layout_below="@id/ownCardLocationNameTextView"
-                        android:layout_marginEnd="10dp"
-                        android:layout_alignStart="@id/ownCardconfirmedCasesLayout"
-                        android:layout_marginTop="15dp"
-                        android:id="@+id/ownCarddeathCasesLayout">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Deaths"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ownCarddeathsTextView"
-                            android:text="000"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/total_cases"
                             android:textColor="#000"
-                            android:textSize="20sp"/>
-                    </LinearLayout>
+                            android:textSize="25sp" />
 
+                        <LinearLayout
+                            android:id="@+id/confirmedCasesLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/confirmed" />
+
+                            <TextView
+                                android:id="@+id/confirmedCaseTextView_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="000"
+                                android:textColor="@color/corona_red"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/locationNameTextView"
+                            android:layout_alignBottom="@id/deathCasesLayout"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="bottom"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/recovered" />
+
+                            <TextView
+                                android:id="@+id/recoveredTextView_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="00"
+                                android:textColor="@color/recovered_green"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/deathCasesLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/confirmedCasesLayout"
+                            android:layout_alignStart="@id/confirmedCasesLayout"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/deaths" />
+
+                            <TextView
+                                android:id="@+id/deathsTextView_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="000"
+                                android:textColor="#000"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <!--MINIMIZED DATA FOR TOTAL CASES-->
+                    <RelativeLayout
+                        android:padding="5dp"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/minimizedDataLayout_Total">
+
+                        <TextView
+                            android:id="@+id/locationNameTextView_TotalMinimized"
+                            android:layout_width="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_toStartOf="@id/confirmedCaseTextView_TotalMinimized"
+                            android:text="@string/total_cases"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/confirmedCaseTextView_TotalMinimized"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="000"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="5dp"
+                            android:textColor="@color/corona_red"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ownCountryTollLayout">
-
+            <!--SELECTED COUNTRY CARD-->
             <LinearLayout
+                android:id="@+id/ownCountryTollLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/totalCasesCard"
                 android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/globalDataRecyclerView"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/ownCountryCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="4dp"
+                    app:cardCornerRadius="6dp"
+                    app:strokeColor="#29B6F6"
+                    app:strokeWidth="1dp">
+
+                    <RelativeLayout
+                        android:animateLayoutChanges="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--COMPLETE CARD OWN COUNTRY-->
+                        <RelativeLayout
+                            android:id="@+id/completeOwnCountryLayout"
+                            android:visibility="visible"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="8dp">
+
+                            <TextView
+                                android:id="@+id/ownCardLocationNameTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toStartOf="@id/ownCardconfirmedCasesLayout"
+                                android:text="Country"
+                                android:textColor="#000"
+                                android:textSize="25sp" />
+
+                            <LinearLayout
+                                android:id="@+id/ownCardconfirmedCasesLayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Confirmed" />
+
+                                <TextView
+                                    android:id="@+id/ownCardConfirmedCaseTextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="000"
+                                    android:textColor="@color/corona_red"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/ownCardLocationNameTextView"
+                                android:layout_alignBottom="@id/ownCarddeathCasesLayout"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="5dp"
+                                android:gravity="bottom"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Recovered" />
+
+                                <TextView
+                                    android:id="@+id/ownCardRecoveredTextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="00"
+                                    android:textColor="@color/recovered_green"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ownCarddeathCasesLayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/ownCardLocationNameTextView"
+                                android:layout_alignStart="@id/ownCardconfirmedCasesLayout"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Deaths" />
+
+                                <TextView
+                                    android:id="@+id/ownCarddeathsTextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="000"
+                                    android:textColor="#000"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/viewMoreText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ownCarddeathCasesLayout"
+                                android:text="View more"
+                                android:textAlignment="center" />
+
+                            <LinearLayout
+                                android:id="@+id/moreDataLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/ownCarddeathCasesLayout"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="3">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/casesToday_expandedCard"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00"
+                                            android:textColor="#BF9938"
+                                            android:textSize="20sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Cases today"
+                                            android:textColor="#000"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/activeCases_expandedCard"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00"
+                                            android:textColor="@color/corona_red"
+                                            android:textSize="20sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Active Cases"
+                                            android:textColor="#000"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/deathsToday_expandedCard"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00"
+                                            android:textColor="#000"
+                                            android:textSize="20sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Deaths today"
+                                            android:textColor="#000"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/criticalCases_expandedCard"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00"
+                                            android:textColor="@color/corona_red"
+                                            android:textSize="20sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Critical Cases"
+                                            android:textColor="#000"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="5dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/casesPerMillion_expandedCard"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00"
+                                            android:textColor="#000"
+                                            android:textSize="20sp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Cases per million"
+                                            android:textColor="#000"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <!--MINIMIZED CARD OWN COUNTRY-->
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/minimizedDataLayout_ownCountry">
+
+                            <TextView
+                                android:id="@+id/locationNameTextView_ownCountryMinimized"
+                                android:layout_width="match_parent"
+                                android:layout_alignParentStart="true"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_toStartOf="@id/confirmedCaseTextView_ownCountryMinimized"
+                                android:text="Country"
+                                android:textColor="#000"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/confirmedCaseTextView_ownCountryMinimized"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="000"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="5dp"
+                                android:textColor="@color/corona_red"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!--GLOBAL DATA RECYCLER VIEW-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/globalDataRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/RecyclerLoadingLayout"
+                android:layout_below="@id/ownCountryTollLayout"
+                android:layout_marginTop="5dp" />
+
+            <!--LOADING LAYOUT-->
+            <LinearLayout
+                android:id="@+id/loadingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/progressGlobal"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
 
                 <TextView
-                    android:id="@+id/updatesOnTextView"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginStart="5dp"
+                    android:text="@string/loadingPlW" />
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
 
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:id="@+id/loadingLayout"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal">
-
-            <ProgressBar
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:id="@+id/progressGlobal" />
-
+            <!--0 CASES LAYOUT-->
             <TextView
-                android:layout_marginStart="5dp"
+                android:id="@+id/countrySafeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/loadingPlW" />
-        </LinearLayout>
+                android:layout_centerInParent="true"
+                android:text="@string/zeroCases"
+                android:textColor="@color/recovered_green"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/zeroCases"
-            android:textStyle="bold"
-            android:id="@+id/countrySafeTextView"
-            android:visibility="gone"
-            android:textColor="@color/recovered_green" />
-    </RelativeLayout>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <!--LOADING LAYOUT-->
+            <LinearLayout
+                android:id="@+id/RecyclerLoadingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/loadingPlW" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

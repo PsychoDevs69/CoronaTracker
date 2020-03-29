@@ -17,9 +17,15 @@
         android:id="@+id/mainViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigation_main"
+        android:layout_above="@id/bottomNavDivider"
         android:layout_below="@id/toolbar_main" />
 
+    <TextView
+        android:id="@+id/bottomNavDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        android:layout_above="@id/bottomNavigation_main"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation_main"
         android:layout_width="match_parent"

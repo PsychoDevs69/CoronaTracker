@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.IndiaStateWise">
+
+    <LinearLayout
+        android:animateLayoutChanges="true"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Indian State wise Data"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:visibility="gone"
+            android:layout_marginEnd="5dp"
+            app:cardCornerRadius="6dp"
+            app:strokeWidth="1dp"
+            android:id="@+id/searchCard"
+            app:strokeColor="@color/cardCornerGrey">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type State name..."
+                android:id="@+id/searchEditText"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:textColor="#000"
+                android:drawableStart="@drawable/search_icon"
+                android:drawablePadding="5dp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/nationalContactCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            app:cardCornerRadius="6dp"
+            android:layout_marginTop="10dp"
+            app:strokeColor="#000"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="National Helpline Details"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/open_sans" />
+
+                <RelativeLayout
+                    android:id="@+id/numberParentLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/numberLayout"
+                        android:layout_width="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/tollFreeLayout"
+                        android:orientation="vertical"
+                        android:layout_marginStart="5dp"
+                        android:gravity="bottom"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Number" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/nationalNumberTextView"
+                            android:text="00"
+                            android:autoLink="phone"
+                            android:textColorLink="@color/recovered_green"
+                            android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                            android:drawablePadding="5dp"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/recovered_green" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tollFreeLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="10dp"
+                        android:gravity="bottom"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Toll-Free" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tollFreeTextView"
+                            android:autoLink="phone"
+                            android:textColorLink="@color/recovered_green"
+                            android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                            android:drawablePadding="5dp"
+                            android:text="00"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/recovered_green" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View more"
+                    android:textAlignment="center"
+                    android:id="@+id/viewMoreText"/>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:id="@+id/moreContactsLayout">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="5dp"
+                        android:gravity="bottom|center_horizontal"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/nationalEmailTextView"
+                            android:text="00"
+                            android:autoLink="email"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/recovered_green" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="5dp"
+                        android:gravity="bottom|center_horizontal"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Facebook" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/nationalFacebookTextView"
+                            android:text="00"
+                            android:autoLink="web"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/recovered_green" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="5dp"
+                        android:gravity="bottom|center_horizontal"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Twitter" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/nationalTwitterTextView"
+                            android:text="00"
+                            android:autoLink="web"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/recovered_green" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stateWiseDataRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/loadingLayoutState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progressGlobal"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/loadingPlW" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/zeroCases"
+        android:textStyle="bold"
+        android:id="@+id/countrySafeTextView"
+        android:visibility="gone"
+        android:textColor="@color/recovered_green" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_search_category_default"
+        android:tint="#fff"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="25dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

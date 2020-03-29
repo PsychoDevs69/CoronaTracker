@@ -28,6 +28,11 @@
                     android:icon="@android:drawable/ic_dialog_map"
                     android:title="Change Country" />
 
+                <item
+                    android:id="@+id/stateWiseIndiaSD"
+                    android:icon="@drawable/stats_icon"
+                    android:title="Indian State wise data &amp; helpline" />
+
             </menu>
         </item>
     </group>

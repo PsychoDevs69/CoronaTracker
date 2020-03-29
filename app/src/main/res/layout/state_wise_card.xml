@@ -12,7 +12,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="4dp"
         app:cardCornerRadius="6dp"
-        android:id="@+id/globalDataCard"
+        android:id="@+id/stateDataCard"
         app:strokeWidth="1dp"
         app:strokeColor="@color/cardCornerGrey"
         android:layout_height="wrap_content">
@@ -117,7 +117,7 @@
                 android:text="View more"
                 android:textAlignment="center"
                 android:id="@+id/viewMoreText"
-                android:layout_below="@+id/recoveredCountLayout"/>
+                android:layout_below="@+id/recoveredCountLayout" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,96 +128,6 @@
                 android:visibility="gone"
                 android:orientation="vertical"
                 android:layout_below="@id/recoveredCountLayout">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="5dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginEnd="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="00"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:textColor="#BF9938"
-                            android:id="@+id/casesToday_expandedCard" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cases today"
-                            android:textColor="#000"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="5dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginEnd="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="00"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:textColor="@color/corona_red"
-                            android:id="@+id/activeCases_expandedCard" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Active Cases"
-                            android:textColor="#000"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="5dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginEnd="5dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="00"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:textColor="#000"
-                            android:id="@+id/deathsToday_expandedCard" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Deaths today"
-                            android:textColor="#000"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -243,12 +153,12 @@
                             android:textStyle="bold"
                             android:textSize="20sp"
                             android:textColor="@color/corona_red"
-                            android:id="@+id/criticalCases_expandedCard" />
+                            android:id="@+id/indianCitizen_expandedCard" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Critical Cases"
+                            android:text="Indian Citizens"
                             android:textColor="#000"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -269,18 +179,49 @@
                             android:text="00"
                             android:textStyle="bold"
                             android:textSize="20sp"
-                            android:textColor="#000"
-                            android:id="@+id/casesPerMillion_expandedCard" />
+                            android:textColor="@color/corona_red"
+                            android:id="@+id/foreigner_expandedCard" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cases per million"
+                            android:text="Foreigners"
                             android:textColor="#000"
                             android:textSize="14sp" />
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_horizontal"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00154545454"
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                        android:drawablePadding="6dp"
+                        android:autoLink="phone"
+                        android:textColorLink="@color/recovered_green"
+                        android:textColor="#00FF00"
+                        android:id="@+id/helpline_expandedCard" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Helpline Number"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
             </LinearLayout>
 
 

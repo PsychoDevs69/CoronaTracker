@@ -70,11 +70,14 @@
                     android:id="@+id/showDataTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:clickable="true"
+                    android:autoLink="all"
+                    android:textIsSelectable="true"
                     android:padding="5dp"
                     android:text="Loading..."
                     android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:focusable="true" />
 
             </androidx.core.widget.NestedScrollView>
 

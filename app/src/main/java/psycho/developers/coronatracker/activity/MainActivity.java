@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +23,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,14 +44,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
 import psycho.developers.coronatracker.R;
 import psycho.developers.coronatracker.Utils.SessionConfig;
 import psycho.developers.coronatracker.adapters.ViewPagerAdapter_Home;
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore firestore;
     Boolean isUpdateAvail = false;
+    String version = "";
     String selectedCountry = "";
 
     @Override
@@ -171,11 +175,22 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.changeCountrySD:
                         openCountryDialog();
                         break;
+                    case R.id.stateWiseIndiaSD:
+                        startActivity(new Intent(MainActivity.this, IndiaStateWise.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
+
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version = pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
         CheckUpdate();
     }
 
@@ -192,19 +207,24 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 isUpdateAvail = Objects.requireNonNull(task.getResult()).getBoolean("isUpdateAvail");
                                 if (isUpdateAvail) {
-                                    firestore.collection("Update")
-                                            .document("checkUpdate")
-                                            .get()
-                                            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                    if (task.isSuccessful()) {
-                                                        String updateLink = Objects.requireNonNull(task.getResult()).getString("updateLink");
+                                    String versionL = Objects.requireNonNull(task.getResult()).getString("version");
 
-                                                        OpenUpdateDialog(updateLink);
+                                    if (!Objects.requireNonNull(versionL).equals(version)) {
+
+                                        firestore.collection("Update")
+                                                .document("checkUpdate")
+                                                .get()
+                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                        if (task.isSuccessful()) {
+                                                            String updateLink = Objects.requireNonNull(task.getResult()).getString("updateLink");
+
+                                                            OpenUpdateDialog(updateLink);
+                                                        }
                                                     }
-                                                }
-                                            });
+                                                });
+                                    }
                                 }
                             }
                         }
