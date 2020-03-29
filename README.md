@@ -43,3 +43,8 @@ Information Source :
 2. Precautions - https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public
 
 3. COVID-19 Risk Level - New Jersey Department of Health 
+
+4. Helpline Data - https://api.rootnet.in/covid19-in/contacts
+
+5. State Wise Data - https://api.rootnet.in/covid19-in/stats/latest
+
