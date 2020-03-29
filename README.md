@@ -1,5 +1,6 @@
 # CoronaTracker
 
+App link (v2.5.0): https://bit.ly/33Twoe9 <br>
 App link (v1.5.5): https://bit.ly/3dv8qdL <br>
 App link (v1.5.0): https://bit.ly/3bm65jt <br>
 App link (v1.0.0): https://bit.ly/3abh6np 
@@ -10,6 +11,12 @@ Simple and light weight application.
 
 ScreenShots :
 <br><br>
+<b>App Version 2.5.0:</b>
+<br><br>
+<span>
+ <img height=400 width=200 src="https://user-images.githubusercontent.com/29357444/77842692-f9f63100-71b2-11ea-8ba0-e3bb75adce10.gif" />
+ </span>
+ <br><br>
 <b>App Version 1.5.0:</b>
 <br><br>
 <span>
