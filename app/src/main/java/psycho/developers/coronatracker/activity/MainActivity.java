@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore firestore;
     Boolean isUpdateAvail = false;
-    String version = "";
+    long version = 0;
     String selectedCountry = "";
 
     @Override
@@ -186,7 +187,8 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            version = pInfo.versionName;
+            version = pInfo.versionCode;
+            Log.e("12345678", "onCreate: " + version);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -207,23 +209,27 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 isUpdateAvail = Objects.requireNonNull(task.getResult()).getBoolean("isUpdateAvail");
                                 if (isUpdateAvail) {
-                                    String versionL = Objects.requireNonNull(task.getResult()).getString("version");
 
-                                    if (!Objects.requireNonNull(versionL).equals(version)) {
+                                    try {
+                                        long versionC = task.getResult().getLong("versionCode");
+                                        if (version < versionC) {
 
-                                        firestore.collection("Update")
-                                                .document("checkUpdate")
-                                                .get()
-                                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                        if (task.isSuccessful()) {
-                                                            String updateLink = Objects.requireNonNull(task.getResult()).getString("updateLink");
+                                            firestore.collection("Update")
+                                                    .document("checkUpdate")
+                                                    .get()
+                                                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                            if (task.isSuccessful()) {
+                                                                String updateLink = Objects.requireNonNull(task.getResult()).getString("updateLink");
 
-                                                            OpenUpdateDialog(updateLink);
+                                                                OpenUpdateDialog(updateLink);
+                                                            }
                                                         }
-                                                    }
-                                                });
+                                                    });
+                                        }
+                                    } catch (Exception e){
+                                        e.printStackTrace();
                                     }
                                 }
                             }
@@ -281,6 +287,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, selectedCountry + " selected", Toast.LENGTH_SHORT).show();
                     sessionConfig.setCountry(selectedCountry);
                     globalList.getCurrentData();
+                    if (selectedCountry.equalsIgnoreCase("India"))
+                        globalList.getIndianData();
                     dialog.dismiss();
                     globalList.swipeRefreshLayout.setRefreshing(true);
 

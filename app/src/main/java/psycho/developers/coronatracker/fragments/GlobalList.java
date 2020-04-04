@@ -50,12 +50,15 @@ import psycho.developers.coronatracker.model.GlobalDataModel;
 
 public class GlobalList extends Fragment {
 
+    // PREVIOUSLY USED APIs
     //private String currentDataURL = "https://covid2019-api.herokuapp.com/v2/current";
+    //private String indianDataURL = "https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise";
 
     private View view;
 
     private RequestQueue requestQueue;
     private String currentDataURL = "https://corona.lmao.ninja/countries";
+    private String indianDataURL = "https://api.covid19india.org/data.json";
     private RecyclerView recyclerView;
     private boolean isLoading = false;
     private int totalDataSize = 0;
@@ -88,6 +91,9 @@ public class GlobalList extends Fragment {
     private RelativeLayout minimizedTotal, minimizedOwnCountry, completeTotal, completeOwnCountry;
     private int totalVisibleCards = 0;
 
+    private GlobalDataModel indianData;
+    private double indianConfirmed = 0, indianActive = 0, indianDeaths = 0, indianRecovered = 0, indianCasesToday = 0, indianDeathsToday = 0;
+
     public GlobalList() {
     }
 
@@ -100,7 +106,10 @@ public class GlobalList extends Fragment {
         recyclerView = view.findViewById(R.id.globalDataRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 
-        adapter = new GLobalDataAdapter(view.getContext(), list);
+        indianData = new GlobalDataModel("NA", indianConfirmed, indianRecovered
+                , indianDeaths, 0, 0, indianActive, 0, 0);
+        adapter = new GLobalDataAdapter(view.getContext(), list, indianData);
+
         sessionConfig = new SessionConfig(view.getContext());
 
         recovered_main = view.findViewById(R.id.recoveredTextView_main);
@@ -149,7 +158,7 @@ public class GlobalList extends Fragment {
         completeOwnCountry = view.findViewById(R.id.completeOwnCountryLayout);
 
         onClickListeners();
-
+        getIndianData();
         getCurrentData();
 
         return view;
@@ -174,9 +183,7 @@ public class GlobalList extends Fragment {
                 recyclerLoadingLayout.setVisibility(View.GONE);
                 isLoading = false;
             } else {
-
-
-                for (int i = totalDataLoaded; i < totalDataSize; i++) {
+                for (int i = totalDataLoaded; i < totalDataSize - 1; i++) {
                     GlobalDataModel dataModel = cachedList.get(i);
                     list.add(dataModel);
                 }
@@ -192,6 +199,7 @@ public class GlobalList extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                getIndianData();
                 getCurrentData();
             }
         });
@@ -227,7 +235,7 @@ public class GlobalList extends Fragment {
                 if (totalVisibleCards == 0) {
                     totalVisibleCards = Objects.requireNonNull(linearLayoutManager).findLastCompletelyVisibleItemPosition() -
                             Objects.requireNonNull(linearLayoutManager).findFirstCompletelyVisibleItemPosition();
-                    totalVisibleCards +=1;
+                    totalVisibleCards += 1;
                 }
 
                 /*EXPAND AND MINIMIZE CARD*/
@@ -266,15 +274,12 @@ public class GlobalList extends Fragment {
                 Log.e("currentData", "onResponse: " + response);
 
                 try {
-
                     sessionConfig.setCachedData(response);
 
                     parseAndSetData(response);
-
                 } catch (Exception e) {
                     Log.e("VOLLEY_EXCEPTION", "onResponse: ", e);
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -282,6 +287,7 @@ public class GlobalList extends Fragment {
                 Log.e("currentData", "onErrorResponse: " + error);
                 Log.e("CACHED_DATA", "onErrorResponse: ");
                 if (!sessionConfig.getCachedData().equals("none")) {
+                    getIndianData();
                     parseAndSetData(sessionConfig.getCachedData());
                 }
             }
@@ -332,7 +338,7 @@ public class GlobalList extends Fragment {
 
 
         try {
-            JSONArray dataArray = new JSONArray(data + "787878787878787878");
+            JSONArray dataArray = new JSONArray(data);
 
             totalDataSize = dataArray.length();
 
@@ -340,7 +346,7 @@ public class GlobalList extends Fragment {
 
                 JSONObject object = dataArray.getJSONObject(i);
 
-                if (object.getString("country") != null && !object.getString("country").isEmpty()) {
+                if (!object.getString("country").equalsIgnoreCase("World") && !object.getString("country").isEmpty()) {
 
                     double cases = 0, recovered = 0, deaths = 0, todayCasesCount = 0,
                             todayDeathsCount = 0, activeCount = 0, criticalCount = 0, casesPerMillionCount = 0;
@@ -406,20 +412,27 @@ public class GlobalList extends Fragment {
 
 
                     if (sessionConfig.getCountry().toLowerCase().equals(object.getString("country").toLowerCase())) {
+
                         ownCardLayout.setVisibility(View.VISIBLE);
                         countryFound = true;
                         ownCardLocation.setText(object.getString("country"));
                         minimizedOwnCountryName.setText(object.getString("country"));
-                        ownCardConfirmed.setText(decimalFormat.format(cases));
-                        minimizedOwnCountryConfirmed.setText(decimalFormat.format(cases));
-                        ownCardRecovered.setText(decimalFormat.format(recovered));
-                        ownCardDeaths.setText(decimalFormat.format(deaths));
 
-                        activeCases.setText(decimalFormat.format(activeCount));
-                        todayDeaths.setText(decimalFormat.format(todayDeathsCount));
-                        todayCases.setText(decimalFormat.format(todayCasesCount));
-                        criticalCases.setText(decimalFormat.format(criticalCount));
-                        casesPerMillion.setText(decimalFormat.format(casesPerMillionCount));
+                        if (sessionConfig.getCountry().equalsIgnoreCase("India")) {
+                            criticalCases.setText(decimalFormat.format(criticalCount));
+                            casesPerMillion.setText(decimalFormat.format(casesPerMillionCount));
+                        } else {
+                            ownCardConfirmed.setText(decimalFormat.format(cases));
+                            minimizedOwnCountryConfirmed.setText(decimalFormat.format(cases));
+                            ownCardRecovered.setText(decimalFormat.format(recovered));
+                            ownCardDeaths.setText(decimalFormat.format(deaths));
+                            activeCases.setText(decimalFormat.format(activeCount));
+
+                            todayDeaths.setText(decimalFormat.format(todayDeathsCount));
+                            todayCases.setText(decimalFormat.format(todayCasesCount));
+                            criticalCases.setText(decimalFormat.format(criticalCount));
+                            casesPerMillion.setText(decimalFormat.format(casesPerMillionCount));
+                        }
                     }
                 }
             }
@@ -428,8 +441,6 @@ public class GlobalList extends Fragment {
                 list.add(dataModel);
                 totalDataLoaded++;
             }
-
-            recyclerView.setAdapter(adapter);
 
 
             if (swipeRefreshLayout.isRefreshing()) {
@@ -453,6 +464,8 @@ public class GlobalList extends Fragment {
             if (!countryFound) {
                 ownCardLayout.setVisibility(View.GONE);
             }
+
+            adapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("CACHED_DATA", "parseAndSetData:");
@@ -523,7 +536,6 @@ public class GlobalList extends Fragment {
                 GlobalDataModel model = cachedList.get(i);
 
                 if (model.getLocationName().toLowerCase().contains(countryName)) {
-
                     list.add(model);
                 }
             }
@@ -534,5 +546,106 @@ public class GlobalList extends Fragment {
         }
 
         adapter.notifyDataSetChanged();
+    }
+
+    public void getIndianData() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, indianDataURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("indianData", "onResponse: " + response);
+
+                sessionConfig.setIndiaData(response);
+
+                parseAndSetIndiaData(response);
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("currentData", "onErrorResponse: " + error);
+                if (!sessionConfig.getIndiaData().equalsIgnoreCase("none")) {
+                    parseAndSetIndiaData(sessionConfig.getIndiaData());
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json");
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        requestQueue.add(stringRequest);
+    }
+
+    private void parseAndSetIndiaData(String response) {
+        Log.e("TRIGGER", "parseAndSetIndiaData: ");
+        try {
+            /*JSONObject data =
+                    new JSONObject(response)
+                            .getJSONObject("data").getJSONObject("total");*/
+
+            JSONObject data =
+                    new JSONObject(response)
+                            .getJSONArray("statewise")
+                            .getJSONObject(0);
+
+            JSONObject delta = new JSONObject(response)
+                    .getJSONArray("key_values")
+                    .getJSONObject(0);
+
+            indianConfirmed = Double.valueOf(data.getString("confirmed"));
+            indianActive = Double.valueOf(data.getString("active"));
+            indianDeaths = Double.valueOf(data.getString("deaths"));
+            indianRecovered = Double.valueOf(data.getString("recovered"));
+
+            indianCasesToday = Double.valueOf(delta.getString("confirmeddelta"));
+            indianDeathsToday = Double.valueOf(delta.getString("deceaseddelta"));
+
+            indianData.setLocationName("India");
+            indianData.setRecovered(indianRecovered);
+            indianData.setDeaths(indianDeaths);
+            indianData.setConfirmed(indianConfirmed);
+            indianData.setActiveCases(indianActive);
+            indianData.setTodayCases(indianCasesToday);
+            indianData.setTodayDeaths(indianDeathsToday);
+
+            if (sessionConfig.getCountry().equalsIgnoreCase("India")) {
+
+                ownCardLocation.setText("India");
+                minimizedOwnCountryName.setText("India");
+
+                ownCardConfirmed.setText(decimalFormat.format(indianConfirmed));
+                minimizedOwnCountryConfirmed.setText(decimalFormat.format(indianConfirmed));
+                ownCardRecovered.setText(decimalFormat.format(indianRecovered));
+                ownCardDeaths.setText(decimalFormat.format(indianDeaths));
+                activeCases.setText(decimalFormat.format(indianActive));
+
+                todayDeaths.setText(decimalFormat.format(indianDeathsToday));
+                todayCases.setText(decimalFormat.format(indianCasesToday));
+            }
+
+            recyclerView.setAdapter(adapter);
+        } catch (Exception e) {
+            Log.e("VOLLEY_EXCEPTION", "onResponse: ", e);
+        }
     }
 }

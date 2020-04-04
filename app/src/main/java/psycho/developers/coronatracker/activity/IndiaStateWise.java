@@ -46,7 +46,8 @@ import psycho.developers.coronatracker.model.StateWiseDataModel;
 public class IndiaStateWise extends AppCompatActivity {
 
     private RequestQueue requestQueue;
-    private String stateWiseURL = "https://api.rootnet.in/covid19-in/stats/latest";
+    //private String stateWiseURL = "https://api.rootnet.in/covid19-in/stats/latest";
+    private String stateWiseURL = "https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise";
     private String stateWiseHelplineURL = "https://api.rootnet.in/covid19-in/contacts";
     private RecyclerView recyclerView;
     private StateWiseListAdapter adapter;
@@ -268,8 +269,8 @@ public class IndiaStateWise extends AppCompatActivity {
                     Objects.requireNonNull(old).setHelpline(helpline);
                     finalList.add(old);
                 } else {
-                    StateWiseDataModel model = new StateWiseDataModel(object.getString("loc"),
-                            0, 0, 0, 0, object.getString("number"));
+                    StateWiseDataModel model = new StateWiseDataModel(object.getString("loc"), object.getString("number"),
+                            0, old.getTotalIndia(), 0, 0, 0);
                     finalList.add(model);
                 }
             }
@@ -288,34 +289,35 @@ public class IndiaStateWise extends AppCompatActivity {
 
         try {
 
-            JSONArray dataArray = new JSONObject(response).getJSONObject("data").getJSONArray("regional");
+            JSONArray dataArray = new JSONObject(response).getJSONObject("data").getJSONArray("statewise");
 
+            double totalIndia = new JSONObject(response).getJSONObject("data").getJSONObject("total").getDouble("confirmed");
             String name = "", helpline = "";
-            double recovered = 0, confirmedIndian = 0, confirmedForeigner = 0, deaths = 0;
+            double recovered = 0, confirmed = 0, deaths = 0, active= 0;
 
             for (int i = 0; i < dataArray.length(); i++) {
                 JSONObject object = dataArray.getJSONObject(i);
 
                 try {
-                    name = object.getString("loc");
+                    name = object.getString("state");
                 } catch (Exception e) {
                     Log.e("STATE_CRASH", i + "parseAndSetData: " + e);
                 }
 
                 try {
-                    recovered = object.getDouble("discharged");
+                    recovered = object.getDouble("recovered");
                 } catch (Exception e) {
                     Log.e("STATE_CRASH", i + "parseAndSetData: " + e);
                 }
 
                 try {
-                    confirmedIndian = object.getDouble("confirmedCasesIndian");
+                    active = object.getDouble("active");
                 } catch (Exception e) {
                     Log.e("STATE_CRASH", i + "parseAndSetData: " + e);
                 }
 
                 try {
-                    confirmedForeigner = object.getDouble("confirmedCasesForeign");
+                    confirmed = object.getDouble("confirmed");
                 } catch (Exception e) {
                     Log.e("STATE_CRASH", i + "parseAndSetData: " + e);
                 }
@@ -327,7 +329,7 @@ public class IndiaStateWise extends AppCompatActivity {
                 }
 
 
-                StateWiseDataModel model = new StateWiseDataModel(name, confirmedIndian, confirmedForeigner, recovered, deaths, helpline);
+                StateWiseDataModel model = new StateWiseDataModel(name,helpline, confirmed, totalIndia, recovered, deaths, active);
                 list.add(model);
 
             }
@@ -336,7 +338,7 @@ public class IndiaStateWise extends AppCompatActivity {
             //recyclerView.setAdapter(adapter);
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 

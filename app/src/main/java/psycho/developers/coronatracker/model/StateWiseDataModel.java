@@ -3,23 +3,24 @@ package psycho.developers.coronatracker.model;
 public class StateWiseDataModel {
 
     String name, helpline;
-    double confirmedIndian, confirmedForeign, recovered, deaths;
+    double confirmed, totalIndia, recovered, deaths, active;
 
-    public StateWiseDataModel(String name, double confirmedIndian, double confirmedForeign, double recovered, double deaths, String helpline) {
+    public StateWiseDataModel(String name, String helpline, double confirmed, double totalIndia, double recovered, double deaths, double active) {
         this.name = name;
-        this.confirmedIndian = confirmedIndian;
-        this.confirmedForeign = confirmedForeign;
+        this.helpline = helpline;
+        this.confirmed = confirmed;
+        this.totalIndia = totalIndia;
         this.recovered = recovered;
         this.deaths = deaths;
-        this.helpline = helpline;
+        this.active = active;
     }
 
-    public String getHelpline() {
-        return helpline;
+    public double getActive() {
+        return active;
     }
 
-    public void setHelpline(String helpline) {
-        this.helpline = helpline;
+    public void setActive(double active) {
+        this.active = active;
     }
 
     public String getName() {
@@ -30,20 +31,28 @@ public class StateWiseDataModel {
         this.name = name;
     }
 
-    public double getConfirmedIndian() {
-        return confirmedIndian;
+    public String getHelpline() {
+        return helpline;
     }
 
-    public void setConfirmedIndian(double confirmedIndian) {
-        this.confirmedIndian = confirmedIndian;
+    public void setHelpline(String helpline) {
+        this.helpline = helpline;
     }
 
-    public double getConfirmedForeign() {
-        return confirmedForeign;
+    public double getConfirmed() {
+        return confirmed;
     }
 
-    public void setConfirmedForeign(double confirmedForeign) {
-        this.confirmedForeign = confirmedForeign;
+    public void setConfirmed(double confirmed) {
+        this.confirmed = confirmed;
+    }
+
+    public double getTotalIndia() {
+        return totalIndia;
+    }
+
+    public void setTotalIndia(double totalIndia) {
+        this.totalIndia = totalIndia;
     }
 
     public double getRecovered() {

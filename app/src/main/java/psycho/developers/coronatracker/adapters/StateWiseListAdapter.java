@@ -44,12 +44,12 @@ public class StateWiseListAdapter extends RecyclerView.Adapter<StateWiseListAdap
         StateWiseDataModel model = list.get(position);
 
         holder.stateName.setText(model.getName());
-        holder.confirmedIndian.setText(decimalFormat.format(model.getConfirmedIndian()));
-        holder.confirmedForeigner.setText(decimalFormat.format(model.getConfirmedForeign()));
+        holder.confirmedIndian.setText(decimalFormat.format(model.getActive()));
+        holder.confirmedForeigner.setText("covid19india.org");
         holder.deaths.setText(decimalFormat.format(model.getDeaths()));
         holder.recovered.setText(decimalFormat.format(model.getRecovered()));
 
-        holder.confirmedTotal.setText(getTotalValue(model));
+        holder.confirmedTotal.setText(decimalFormat.format(model.getConfirmed()));
 
         holder.helpline.setText(model.getHelpline().replace(",", "\n"));
 
@@ -76,9 +76,9 @@ public class StateWiseListAdapter extends RecyclerView.Adapter<StateWiseListAdap
         });
     }
 
-    private String getTotalValue(StateWiseDataModel model) {
+    /*private String getTotalValue(StateWiseDataModel model) {
         return decimalFormat.format(model.getConfirmedForeign() + model.getConfirmedIndian());
-    }
+    }*/
 
     @Override
     public int getItemCount() {

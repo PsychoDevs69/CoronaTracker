@@ -16,6 +16,7 @@ public class SessionConfig {
     private String cachedDataSharedPref = "SharedPref_coronaTracker_cache";
     private String cachedStateDataSharedPref = "SharedPref_coronaTracker_stateCache";
     private String cachedStateContactDataSharedPref = "SharedPref_coronaTracker_stateContactCache";
+    private String cachedIndiaDataSharedPref = "SharedPref_coronaTracker_IndiaDataCache";
 
     public SessionConfig(Context context) {
         this.context = context;
@@ -99,6 +100,16 @@ public class SessionConfig {
     public void setStateContactData(String stateContactData) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(cachedStateContactDataSharedPref, stateContactData);
+        editor.apply();
+    }
+
+    public String getIndiaData() {
+        return sharedPreferences.getString(cachedIndiaDataSharedPref, "NA");
+    }
+
+    public void setIndiaData(String indiaData) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(cachedIndiaDataSharedPref, indiaData);
         editor.apply();
     }
 }
