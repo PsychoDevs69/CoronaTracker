@@ -47,5 +47,9 @@ Information Source :
 
 4. Helpline Data - https://api.rootnet.in/covid19-in/contacts
 
-5. State Wise Data - https://api.rootnet.in/covid19-in/stats/latest
+<del>5. State Wise Data - https://api.rootnet.in/covid19-in/stats/latest<del>
+
+5. State Wise Data - https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise
+
+6. Indian Data - https://api.covid19india.org/data.json
 
