@@ -1,5 +1,6 @@
 # CoronaTracker
 
+App link (v2.5.2): https://bit.ly/3bVxklh <br>
 App link (v2.5.1): https://bit.ly/3dV9yHO <br>
 App link (v2.5.0): https://bit.ly/33Twoe9 <br>
 App link (v1.5.5): https://bit.ly/3dv8qdL <br>
@@ -51,5 +52,5 @@ Information Source :
 
 5. State Wise Data - https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise
 
-6. Indian Data - https://api.covid19india.org/data.json
+<del>6. Indian Data - https://api.covid19india.org/data.json<del>
 
