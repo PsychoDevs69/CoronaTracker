@@ -1,6 +1,6 @@
 # CoronaTracker
 
- <img height=500 width=1024 src="https://user-images.githubusercontent.com/29357444/78502309-33640900-777e-11ea-8917-f737c19c9558.png" />
+ <img height=300 width=900 src="https://user-images.githubusercontent.com/29357444/78502309-33640900-777e-11ea-8917-f737c19c9558.png" />
 
 App link (v2.5.2): https://bit.ly/3bVxklh <br>
 App link (v2.5.1): https://bit.ly/3dV9yHO <br>
@@ -38,7 +38,7 @@ ScreenShots :
   <img height=400 width=200 src="https://user-images.githubusercontent.com/29357444/77245626-f4926700-6c45-11ea-917a-3643d016d569.jpeg" />
  </span>
  
-Backend Logic : 
+<b>Backend Logic :</b> 
 
 1. In-App Update : Firebase is implmented for In-App Update where whenever the user opens the app the current version of app is checked with the latest version given in firebase database, and if its lower than that of the latest version then user will get an update dialog with an intent to browser with latest download link.
 
@@ -46,7 +46,7 @@ Backend Logic :
 
 3. Important Announcement Activity : the data is also fetched dynamically from firebase database. 
 
-Information Source : 
+<b>Information Source :</b> 
 
 <del>1. Global Tracker - https://github.com/ExpDev07/coronavirus-tracker-api<del>
  
