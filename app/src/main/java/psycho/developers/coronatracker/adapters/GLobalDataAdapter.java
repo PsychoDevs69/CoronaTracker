@@ -57,8 +57,12 @@ public class GLobalDataAdapter extends RecyclerView.Adapter<GLobalDataAdapter.Vi
             holder.deaths.setText(decimalFormat.format(indianData.getDeaths()));
             holder.recovered.setText(decimalFormat.format(indianData.getRecovered()));
             holder.activeCases.setText(decimalFormat.format(indianData.getActiveCases()));
-            holder.todayDeaths.setText(decimalFormat.format(indianData.getTodayDeaths()));
-            holder.todayCases.setText(decimalFormat.format(indianData.getTodayCases()));
+
+            //holder.todayDeaths.setText(decimalFormat.format(indianData.getTodayDeaths()));
+            //holder.todayCases.setText(decimalFormat.format(indianData.getTodayCases()));
+
+            holder.todayDeaths.setText("NA");
+            holder.todayCases.setText("NA");
 
         } else {
             holder.location.setText(model.getLocationName());

@@ -4,6 +4,9 @@
     package="psycho.developers.coronatracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -12,22 +15,10 @@
         android:roundIcon="@mipmap/corona_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <receiver android:name=".widget.ShowCountryData">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
+        tools:ignore="GoogleAppIndexingWarning"
+        android:hardwareAccelerated="true">
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/show_country_data_info" />
-        </receiver>
-
-        <activity android:name=".widget.ShowCountryDataConfigureActivity">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activity.HereMaps"/>
         <activity android:name=".activity.IndiaStateWise" />
         <activity android:name=".activity.RiskLevel" />
         <activity android:name=".activity.ImportantAnnouncement" />
@@ -41,6 +32,10 @@
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustNothing" />
+
+
+
+        <!--FIREBASE CONFIGS-->
 
         <service
             android:name=".Utils.MyFirebaseMessagingService"
@@ -66,14 +61,53 @@
             android:name="firebase_messaging_auto_init_enabled"
             android:value="true" />
 
-        <receiver android:name=".widget.ShowCountryData" >
+
+        <!--WIDGET CONFIGS-->
+        <receiver android:name=".widget.ShowCountryData">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/show_country_data_info" />
         </receiver>
 
+        <activity android:name=".widget.ShowCountryDataConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".widget.ShowCountryData">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/show_country_data_info" />
+        </receiver>
+
+        <!-- HERE MAPS CONFIGS -->
+        <!--<meta-data
+            android:name="com.here.android.maps.appid"
+            android:value="IVrNZnMdCOeDjzNu5IUL" />
+        <meta-data
+            android:name="com.here.android.maps.apptoken"
+            android:value="Af2nRlIA7iDknaIJ8oBL9Q" />
+        <meta-data
+            android:name="com.here.android.maps.license.key"
+            android:value="eRIbq4IDQk2z2+7g7dzr40ib9g9cSUffil7wH+gQp+jHMI3ZGwl8pXwUk76D6MXW+78jdOn2pu7LeYcP0OjeCM6PqilGu5ZM/RI3WuEGhxMD0HiokI89NINGVjSjaoP8h6LaGt6rfRme0TpviiDVF2+GLU4F0huzud8BOKxcct9uaAnQcCzmMYfx2cLbG7t+v6M+EyIABET9jXkWkc4w6nChfmeg2deZlZOPkiwaOnpgUOJqy5DSe2SUt6f45BJ69iWJiIPjXj5MOh9rbfuRKgMqzdZUHZZvZsRm33Btfvv+CFTwiKeG5htUIA7Lh+2Z9VJfglbA+O61rfoAB+5QgmBNgfGynx5oT6PEEzKXvUvQEnJxKHvIWxqfEfCAaXUcnI3ExQUuVVSmMUZQLpLHToX6uGM3Xllwagk4NYapTDWC3wrV+404gz5MSJZ2UaPGxVWbGz0I2tMcyU0EAu9YeK68h77X6GUxCgyATRqmqWM6zqDVkI4YbMEe2mDMEHLOHz4F8ull0vmJuFWqXhUxRlJtJSaEkEz0bp5GgR66sSUhu7JbUNrnATB1c/rTfta1y6aBZ5jWteAcZptQXInTdrMrU0ZqCToMHFlzTnMexTA12BzhJ0hzXgGfEIDdluWIsFO//uplnDqfu2mKzHzz8tWhyh/+NyeLNsnv4mAGdxY=" />
+
+        <service
+            android:name="com.here.android.mpa.service.MapService"
+            android:exported="false"
+            android:label="PsychoHere">
+            <intent-filter>
+                <action android:name="com.here.android.mpa.service.MapService.v3" />
+            </intent-filter>
+        </service>-->
     </application>
 
 </manifest>

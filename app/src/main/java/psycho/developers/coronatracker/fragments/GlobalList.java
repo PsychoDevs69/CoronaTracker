@@ -52,13 +52,13 @@ public class GlobalList extends Fragment {
 
     // PREVIOUSLY USED APIs
     //private String currentDataURL = "https://covid2019-api.herokuapp.com/v2/current";
-    //private String indianDataURL = "https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise";
+    //private String indianDataURL = "https://api.covid19india.org/data.json";
 
     private View view;
 
     private RequestQueue requestQueue;
     private String currentDataURL = "https://corona.lmao.ninja/countries";
-    private String indianDataURL = "https://api.covid19india.org/data.json";
+    private String indianDataURL = "https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise";
     private RecyclerView recyclerView;
     private boolean isLoading = false;
     private int totalDataSize = 0;
@@ -109,6 +109,7 @@ public class GlobalList extends Fragment {
         indianData = new GlobalDataModel("NA", indianConfirmed, indianRecovered
                 , indianDeaths, 0, 0, indianActive, 0, 0);
         adapter = new GLobalDataAdapter(view.getContext(), list, indianData);
+        recyclerView.setAdapter(adapter);
 
         sessionConfig = new SessionConfig(view.getContext());
 
@@ -599,34 +600,35 @@ public class GlobalList extends Fragment {
     private void parseAndSetIndiaData(String response) {
         Log.e("TRIGGER", "parseAndSetIndiaData: ");
         try {
-            /*JSONObject data =
-                    new JSONObject(response)
-                            .getJSONObject("data").getJSONObject("total");*/
-
             JSONObject data =
                     new JSONObject(response)
-                            .getJSONArray("statewise")
-                            .getJSONObject(0);
+                            .getJSONObject("data").getJSONObject("total");
 
-            JSONObject delta = new JSONObject(response)
+            /*JSONObject data =
+                    new JSONObject(response)
+                            .getJSONArray("statewise")
+                            .getJSONObject(0);*/
+
+            /*JSONObject delta = new JSONObject(response)
                     .getJSONArray("key_values")
-                    .getJSONObject(0);
+                    .getJSONObject(0);*/
 
             indianConfirmed = Double.valueOf(data.getString("confirmed"));
             indianActive = Double.valueOf(data.getString("active"));
             indianDeaths = Double.valueOf(data.getString("deaths"));
             indianRecovered = Double.valueOf(data.getString("recovered"));
 
-            indianCasesToday = Double.valueOf(delta.getString("confirmeddelta"));
-            indianDeathsToday = Double.valueOf(delta.getString("deceaseddelta"));
+            /*indianCasesToday = Double.valueOf(delta.getString("confirmeddelta"));
+            indianDeathsToday = Double.valueOf(delta.getString("deceaseddelta"));*/
 
             indianData.setLocationName("India");
             indianData.setRecovered(indianRecovered);
             indianData.setDeaths(indianDeaths);
             indianData.setConfirmed(indianConfirmed);
             indianData.setActiveCases(indianActive);
-            indianData.setTodayCases(indianCasesToday);
-            indianData.setTodayDeaths(indianDeathsToday);
+
+            /*indianData.setTodayCases(indianCasesToday);
+            indianData.setTodayDeaths(indianDeathsToday);*/
 
             if (sessionConfig.getCountry().equalsIgnoreCase("India")) {
 
@@ -639,11 +641,11 @@ public class GlobalList extends Fragment {
                 ownCardDeaths.setText(decimalFormat.format(indianDeaths));
                 activeCases.setText(decimalFormat.format(indianActive));
 
-                todayDeaths.setText(decimalFormat.format(indianDeathsToday));
-                todayCases.setText(decimalFormat.format(indianCasesToday));
+                todayDeaths.setText("NA");
+                todayCases.setText("NA");
             }
 
-            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         } catch (Exception e) {
             Log.e("VOLLEY_EXCEPTION", "onResponse: ", e);
         }
