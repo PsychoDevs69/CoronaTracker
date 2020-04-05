@@ -1,6 +1,6 @@
 # CoronaTracker
 
- <img height=300 width=800 src="https://user-images.githubusercontent.com/29357444/78502309-33640900-777e-11ea-8917-f737c19c9558.png" />
+ <img height=300 width=800 src="https://user-images.githubusercontent.com/29357444/78502309-33640900-777e-11ea-8917-f737c19c9558.png" align="middle" />
 
 App link (v2.5.2): https://bit.ly/3bVxklh <br>
 App link (v2.5.1): https://bit.ly/3dV9yHO <br>
